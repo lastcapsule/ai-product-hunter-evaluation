@@ -2,6 +2,10 @@
 
 Evaluation method and prompts of [AI Product Hunter](https://ai-producthunt.com)
 
+## version(effective date)
+
+- 2024-08-22
+
 ## evaluation target period of the day
 
 - from: UTC 09:00:01 (02:00:01 PDT, 01:00:01 PST) of the day before
@@ -74,7 +78,7 @@ generate understanding using GenAI
 
 #### model of step3
 
-- gpt-4o
+- gpt-4o-2024-08-06
 
 #### messages(prompts) of step3
 
@@ -84,6 +88,7 @@ generate understanding using GenAI
 You are a professional ProductHunt reviewer.
 Your job is to understand and evaluate(score) the products launched to ProductHunt today.
 You have to figure out the product is really something valuable, based on the fact that the majority of the products is nonsense.
+Do not hallucinate. Do not make up factual information.
 ```
 
 - role: user
@@ -174,7 +179,7 @@ generate evaluation using GenAI
 
 #### model of step4
 
-- gpt-4o
+- gpt-4o-2024-08-06
 
 #### messages(prompts) of step4
 
@@ -184,6 +189,7 @@ generate evaluation using GenAI
 You are a professional ProductHunt reviewer.
 Your job is to understand and evaluate(score) the products launched to ProductHunt today.
 You have to figure out the product is really something valuable, based on the fact that the majority of the products is nonsense.
+Do not hallucinate. Do not make up factual information.
 ```
 
 - role: user
@@ -211,34 +217,40 @@ Here is the details.
 ## output json
 
 {
-  "plusElements": { "item": string, "score": number, "reason": string }[]
-  "minusElements": { "item": string, "score": number, "reason": string }[]
+  "plusElements": {
+    "Technical Innovation": { "reason": string,  "score": number },
+    "Conceptual Innovation": { "reason": string,  "score": number },
+    "Problem Solver": { "reason": string,  "score": number },
+    "Entertainment Value": { "reason": string,  "score": number },
+    "Business Potential": { "reason": string,  "score": number },
+    "Social Impact": { "reason": string,  "score": number },
+    "Other Plus(additional)":{ "reason": string,  "score": number } | null,
+  },
+  "minusElements": {
+    "Risks": { "reason": string,  "score": number },
+    "Other Minus(additional)": { "reason": string,  "score": number },
+  }
 }
-
-### plusElements
-- technical innovation
-- conceptual innovation
-- problem solver
-- entertainment Value
-- business potential
-- social impact
-- other plus(additional)
 
 ### plusElements scoring guideline(not applied to minusElements)
 - min: 0, max: 100
 - 0: There is nothing to be evaluated in this context(50 percentile)
-- 10: seems hopeless(65 percentile)
-- 20: seems not promising(65 percentile)
+- 10: seems hopeless(60 percentile)
+- 20: seems not promising(70 percentile)
 - 30: seems a little bit promising(80 percentile)
 - 40: seems promising enough(90 percentile)
 - 50: seems very promising(98 percentile)
 - 60: seems super promising(99 percentile)
 - 61: ~ 100: super promising better than ever
 
-### minusElements
+### minusElements scoring guideline
 
-- risks(fraud, legal, social problem, fake product, etc...) min: 0, max: 100
-- other minus(additional) min: 0, max:100
+#### "Risks"
+- fraud, legal, social problem, fake product, etc...
+- min: 0, max: 100
+
+##### Other Minus(additional)
+- min: 0, max:100
 
 -------------------------------------------------------------------------------------
 ```
