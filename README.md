@@ -4,7 +4,7 @@ Evaluation method and prompts of [AI Product Hunter](https://ai-producthunt.com)
 
 ## version(effective date)
 
-- 2024-08-22
+- 2024-11-22
 
 ## evaluation target period of the day
 
@@ -78,7 +78,7 @@ generate understanding using GenAI
 
 #### model of step3
 
-- gpt-4o-2024-08-06
+- gpt-4o-2024-11-20
 
 #### messages(prompts) of step3
 
@@ -179,7 +179,7 @@ generate evaluation using GenAI
 
 #### model of step4
 
-- gpt-4o-2024-08-06
+- gpt-4o-2024-11-20
 
 #### messages(prompts) of step4
 
